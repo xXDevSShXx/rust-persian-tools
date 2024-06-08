@@ -11,9 +11,14 @@ pub fn remove_half_space(input: impl AsRef<str>) -> String {
     let input = input.as_ref();
 
     input
-        .replace('\u{00AD}', "")
         .chars()
-        .map(|ch| if ch == '\u{200C}' { ' ' } else { ch })
+        .map(|ch| {
+            if ch == '\u{200C}' || ch == '\u{00AD}' {
+                ' '
+            } else {
+                ch
+            }
+        })
         .collect()
 }
 pub trait RemoveHalfSpace {
